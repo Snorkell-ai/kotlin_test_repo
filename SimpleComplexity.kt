@@ -5,16 +5,13 @@ package com.github.test
  */
 class SimpleComplexity {
     /**
-     * Simple function that returns a greeting
-     * Cyclomatic Complexity: 1
+     * Returns a greeting message for the given name.
      */
     fun greet(name: String): String {
         return "Hello, $name!"
     }
-
     /**
-     * Function to check if a number is positive, negative, or zero
-     * Cyclomatic Complexity: 3
+     * Determines if a number is positive, negative, or zero.
      */
     fun checkNumber(num: Int): String {
         return when {
@@ -23,10 +20,17 @@ class SimpleComplexity {
             else -> "Zero"
         }
     }
-
     /**
-     * Function to determine grade based on score
-     * Cyclomatic Complexity: 5
+     * Determines the grade based on the given score.
+     *
+     * This function evaluates the input score and assigns a letter grade according to predefined thresholds:
+     * - "A" for scores 90 and above
+     * - "B" for scores 80 to 89
+     * - "C" for scores 70 to 79
+     * - "D" for scores 60 to 69
+     * - "F" for scores below 60
+     *
+     * @param score The student's score as an integer.
      */
     fun determineGrade(score: Int): String {
         return when {
@@ -45,10 +49,8 @@ class SimpleComplexity {
  */
 class UserManager {
     private val users = mutableListOf<String>()
-
     /**
-     * Add a user to the list
-     * Cyclomatic Complexity: 1
+     * Adds a user to the list if it does not already exist.
      */
     fun addUser(username: String): Boolean {
         return if (!users.contains(username)) {
@@ -58,10 +60,12 @@ class UserManager {
             false
         }
     }
-
     /**
-     * Check if user exists and has proper permissions
-     * Cyclomatic Complexity: 4
+     * Determines if a user has permission to access a specific resource based on their role.
+     *
+     * The function first checks if the user exists in the system. If the user does not exist,
+     * it returns false. For existing users, it grants access if the user is an admin or if
+     * the user is a regular user with permissions for 'public' or 'shared' resources.
      */
     fun checkUserPermission(username: String, role: String, resource: String): Boolean {
         if (!users.contains(username)) {
@@ -78,10 +82,14 @@ class UserManager {
         
         return false
     }
-
     /**
-     * Validate user data with various checks
-     * Cyclomatic Complexity: 5
+     * Validates user data by checking multiple conditions.
+     *
+     * This function performs a series of checks on the provided username, email,
+     * and age to ensure they meet specific criteria. It collects any validation errors
+     * in a list and returns them. The checks include verifying the length of the
+     * username, the presence of an "@" symbol in the email, the minimum age requirement,
+     * and whether the username already exists in the users database.
      */
     fun validateUserData(username: String, email: String, age: Int): List<String> {
         val errors = mutableListOf<String>()
@@ -112,16 +120,20 @@ class UserManager {
  */
 class Calculator {
     /**
-     * Basic addition operation
-     * Cyclomatic Complexity: 1
+     * Performs basic addition of two integers.
      */
     fun add(a: Int, b: Int): Int {
         return a + b
     }
-
     /**
-     * Determine if a number is prime
-     * Cyclomatic Complexity: 4
+     * Determines if a given number is prime.
+     *
+     * The function first handles edge cases where numbers less than or equal to 1 are not prime,
+     * and numbers 2 and 3 are prime. It then eliminates even numbers and multiples of 3.
+     * For numbers greater than 3, it uses a loop to check divisibility starting from 5,
+     * incrementing by 6 each time (i.e., checking numbers of the form 6k ± 1).
+     *
+     * @param number The integer to be checked for primality.
      */
     fun isPrime(number: Int): Boolean {
         if (number <= 1) {
@@ -146,10 +158,8 @@ class Calculator {
         
         return true
     }
-
     /**
-     * Calculates factorial with error handling
-     * Cyclomatic Complexity: 3
+     * Computes the factorial of a non-negative integer with overflow check.
      */
     fun factorial(n: Int): Long {
         if (n < 0) {
