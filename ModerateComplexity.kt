@@ -1,12 +1,19 @@
-package com.github.test
-
 /**
- * Class with moderate complexity methods (cyclomatic complexity: 6-15)
+ * Processes an order based on various conditions such as membership, coupon codes, item count, and holidays.
  */
 class ModerateComplexity {
     /**
-     * Validates a password based on multiple rules
-     * Cyclomatic Complexity: 8
+     * Validates a password based on multiple rules.
+     *
+     * Checks if the password meets the following criteria:
+     * - Has at least 8 characters
+     * - Contains at least one uppercase letter
+     * - Contains at least one lowercase letter
+     * - Contains at least one digit
+     * - Contains at least one special character
+     *
+     * @param password the password to validate
+     * @return true if the password meets all criteria, false otherwise
      */
     fun validatePassword(password: String): Boolean {
         if (password.length < 8) {
@@ -92,10 +99,8 @@ class ModerateComplexity {
         
         return if (finalAmount < 0) 0.0 else finalAmount
     }
-
     /**
-     * Parse and validate complex input string
-     * Cyclomatic Complexity: 15
+     * Parses a structured input string into a map containing name, age, and data fields.
      */
     fun parseInputData(input: String): Map<String, Any> {
         val result = mutableMapOf<String, Any>()
@@ -175,10 +180,19 @@ class AuthenticationManager {
     )
     
     data class UserInfo(val passwordHash: String, val role: String, val isActive: Boolean, val lastLogin: Long)
-    
     /**
-     * Authenticate a user with validation and logging
-     * Cyclomatic Complexity: 7
+     * Authenticates a user by validating credentials and logging the attempt.
+     *
+     * The function checks if the username and password are provided, verifies the user's active status,
+     * ensures the account has not expired, compares the hashed password, and logs the login attempt.
+     * If any validation fails, it logs the failure reason and returns false. Otherwise, it updates
+     * the last login time and logs a successful login.
+     *
+     * @param username The username of the user attempting to log in.
+     * @param password The password provided by the user.
+     * @param ipAddress The IP address from which the login attempt is made.
+     * @param device The device information used for logging purposes.
+     * @return True if authentication is successful, false otherwise.
      */
     fun authenticateUser(username: String, password: String, ipAddress: String, device: String): Boolean {
         val currentTime = System.currentTimeMillis()
@@ -214,22 +228,29 @@ class AuthenticationManager {
         return true
     }
     
+    /**
+     * Logs a failed login attempt with the username, IP address, and reason.
+     */
     private fun logFailedAttempt(username: String, ipAddress: String, reason: String) {
         println("Failed login: $username from $ipAddress - $reason")
     }
     
+    /**
+     * Logs a successful login event with user details.
+     */
     private fun logSuccessfulLogin(username: String, ipAddress: String, device: String) {
         println("Successful login: $username from $ipAddress using $device")
     }
     
+    /**
+     * Reverses the input password as a simple mock hash function.
+     */
     private fun hashPassword(password: String): String {
         // Simple mock implementation - in real code would use proper hashing
         return password.reversed()
     }
-    
     /**
-     * Check if user has permission for action on resource
-     * Cyclomatic Complexity: 10
+     * Determines if a user has permission to perform an action on a resource.
      */
     fun hasPermission(username: String, action: String, resource: String, context: Map<String, String>): Boolean {
         val userInfo = users[username] ?: return false
@@ -282,10 +303,8 @@ class AuthenticationManager {
         
         return false
     }
-    
     /**
-     * Register a new user with validation
-     * Cyclomatic Complexity: 11
+     * Registers a new user with validation checks.
      */
     fun registerUser(username: String, password: String, email: String, role: String): Boolean {
         // Check if username already exists
@@ -338,15 +357,12 @@ class AuthenticationManager {
         return true
     }
 }
-
 /**
- * Class for processing text with various analysis methods
- * Methods with moderate cyclomatic complexity
+ * Transforms text based on specified rules such as capitalization, name formatting, and redaction.
  */
 class TextProcessor {
     /**
-     * Analyze text sentiment and categories
-     * Cyclomatic Complexity: 9
+     * Analyzes text sentiment, categories, and complexity metrics.
      */
     fun analyzeText(text: String): Map<String, Any> {
         val result = mutableMapOf<String, Any>()
@@ -420,10 +436,8 @@ class TextProcessor {
         
         return result
     }
-    
     /**
-     * Parse and extract structured data from text
-     * Cyclomatic Complexity: 12
+     * Parses and extracts structured data from a given text.
      */
     fun extractStructuredData(text: String): Map<String, Any> {
         val result = mutableMapOf<String, Any>()
